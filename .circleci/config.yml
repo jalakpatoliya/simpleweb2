@@ -5,8 +5,8 @@ jobs:
    docker:
     - image: cimg/base:2021.04
       auth:
-         username: $DOCKER_USERNAME
-         password: $DOCKER_PASSWORD
+         username: $DOCKERHUB_USERNAME
+         password: $DOCKERHUB_PASSWORD
    steps:
         - run: echo "First Step"
         - checkout
@@ -17,5 +17,5 @@ jobs:
            name: build
            command: |
              docker build -t jalak777/simpleweb:v4 .
-             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+             echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
              docker push jalak777/simpleweb:v4
