@@ -5,8 +5,8 @@ jobs:
    docker:
     - image: cimg/base:2021.04
       auth:
-         username: $Docker
-         password: $Docker
+         username: $DOCKER_USERNAME
+         password: $DOCKER_PASSWORD
    steps:
         - run: echo "First Step"
         - checkout
@@ -15,3 +15,9 @@ jobs:
            command: |
              ls -al
              echo '^^^The files in your repo^^^'
+        - run: 
+           name: build
+           command: |
+             docker build -t jalak777/simpleweb:v4 .
+             docker ps -a
+             docker push jalak777/simpleweb:v4
