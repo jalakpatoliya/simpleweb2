@@ -10,14 +10,13 @@ jobs:
    steps:
         - run: echo "First Step"
         - checkout
-        - run: 
-           name: Second step
-           command: |
-             ls -al
-             echo '^^^The files in your repo^^^'
+        - setup_remote_docker:
+            version: 20.10.14
+            docker_layer_caching: true
         - run: 
            name: build
            command: |
              docker build -t jalak777/simpleweb:v4 .
              docker ps -a
+             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
              docker push jalak777/simpleweb:v4
