@@ -17,6 +17,5 @@ jobs:
            name: build
            command: |
              docker build -t jalak777/simpleweb:v4 .
-             docker ps -a
              echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
              docker push jalak777/simpleweb:v4
